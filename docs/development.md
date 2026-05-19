@@ -66,7 +66,6 @@ falcula-web/
 │   │   └── schemas/         # Zodスキーマ
 │   └── stores/              # 状態管理
 ├── public/                  # 静的アセット
-├── tests/                   # テストファイル
 │
 ├── docs/                    # ドキュメント
 │   ├── constitution.md      # 開発原則
@@ -323,21 +322,28 @@ bun install
 bun dev
 
 # ビルド
-bun build
+bun run build
 
 # テスト実行
 bun run test
+bun run test:watch
 
-# コード品質チェック・修正（Biome）
-bun format        # フォーマット実行
-bun lint          # Lint実行
-bun check         # フォーマット+Lint実行
+# コード品質（Biome） — 書き換え（自動修正）
+bun format        # フォーマット書き換え
+bun lint          # Lint 書き換え
+bun fix           # フォーマット + Lint を一括書き換え
 
-# CI用チェック（変更なし）
-bun format:check  # フォーマットチェックのみ
-bun lint:check    # Lintチェックのみ
-bun check:ci      # CI用チェック
+# コード品質（Biome） — チェックのみ（読み取り専用 / CI 用）
+bun format:check  # フォーマットチェック
+bun lint:check    # Lint チェック
+bun check         # フォーマット + Lint を一括チェック（CI で実行）
 ```
+
+命名規約:
+
+- **無印** = 書き換え（`--write` 相当）
+- **`:check`** = 読み取り専用チェック
+- 一括は `fix`（書き換え） / `check`（チェック）
 
 ---
 
