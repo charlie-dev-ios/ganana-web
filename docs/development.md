@@ -275,8 +275,6 @@ describe('filterActiveUsers', () => {
 <type>[optional scope]: <説明>
 
 [optional body]
-
-[optional footer(s)]
 ```
 
 **重要**: Claudeが書いた旨のフッター（Co-Authored-Byなど）は含めないこと
