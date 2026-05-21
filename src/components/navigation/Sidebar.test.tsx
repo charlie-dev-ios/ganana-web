@@ -22,4 +22,11 @@ describe("Sidebar", () => {
       screen.getByRole("navigation", { name: "メインナビゲーション" }),
     ).toBeInTheDocument();
   });
+
+  it("ダッシュボード項目はダッシュボード画面へのリンクになっている", () => {
+    render(<Sidebar />);
+    expect(
+      screen.getByRole("link", { name: "ダッシュボード" }),
+    ).toHaveAttribute("href", "/dashboard");
+  });
 });
