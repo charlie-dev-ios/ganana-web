@@ -25,10 +25,10 @@ describe("AppSidebar", () => {
     expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
   });
 
-  it("メインナビゲーションのランドマークとして描画する", () => {
-    renderAppSidebar();
+  it("サイドバーとして描画する", () => {
+    const { container } = renderAppSidebar();
     expect(
-      screen.getByRole("navigation", { name: "メインナビゲーション" }),
+      container.querySelector('[data-slot="sidebar"]'),
     ).toBeInTheDocument();
   });
 

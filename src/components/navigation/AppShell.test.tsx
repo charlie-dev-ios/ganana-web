@@ -8,10 +8,10 @@ describe("AppShell", () => {
     expect(screen.getByText("コンテンツ")).toBeInTheDocument();
   });
 
-  it("メインナビゲーション（サイドバー）を描画する", () => {
-    render(<AppShell>コンテンツ</AppShell>);
+  it("サイドバーを描画する", () => {
+    const { container } = render(<AppShell>コンテンツ</AppShell>);
     expect(
-      screen.getByRole("navigation", { name: "メインナビゲーション" }),
+      container.querySelector('[data-slot="sidebar"]'),
     ).toBeInTheDocument();
   });
 

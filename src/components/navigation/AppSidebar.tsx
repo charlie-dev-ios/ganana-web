@@ -69,16 +69,12 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <nav aria-label="メインナビゲーション">
-              <NavMenu items={primaryItems} />
-            </nav>
+            <NavMenu items={primaryItems} />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <nav aria-label="サブナビゲーション">
-          <NavMenu items={secondaryItems} />
-        </nav>
+        <NavMenu items={secondaryItems} />
       </SidebarFooter>
     </Sidebar>
   );
