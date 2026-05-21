@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import type { ReactNode } from "react";
+import { Sidebar } from "@/components/navigation/Sidebar";
 import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.variable} font-sans antialiased`}>
-        {children}
+        <div className="flex min-h-dvh">
+          <Sidebar />
+          <div className="flex-1">{children}</div>
+        </div>
       </body>
     </html>
   );
