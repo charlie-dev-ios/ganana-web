@@ -15,15 +15,25 @@ describe("AppShell", () => {
     ).toBeInTheDocument();
   });
 
-  it("外側コンテナは画面高に固定されページ全体のスクロールを防ぐ", () => {
-    const { container } = render(<AppShell>コンテンツ</AppShell>);
-    const shell = container.firstElementChild;
-    expect(shell).toHaveClass("h-dvh", "overflow-hidden");
+  it("サイドバーの開閉を切り替えるトグルボタンを描画する", () => {
+    render(<AppShell>コンテンツ</AppShell>);
+    expect(
+      screen.getByRole("button", { name: "サイドバーを開閉" }),
+    ).toBeInTheDocument();
   });
 
-  it("コンテンツ領域だけが縦スクロールする", () => {
+  // CHA-185 回帰テスト: サイドバーが固定配置されることで、
+  // コンテンツをスクロールしてもサイドバーが追従しないことを保証する。
+  it("サイドバーはコンテンツのスクロールに追従しないよう固定配置される", () => {
+    const { container } = render(<AppShell>コンテンツ</AppShell>);
+    const sidebarContainer = container.querySelector(
+      '[data-slot="sidebar-container"]',
+    );
+    expect(sidebarContainer).toHaveClass("fixed");
+  });
+
+  it("コンテンツ領域を main ランドマークとして描画する", () => {
     render(<AppShell>コンテンツ</AppShell>);
-    const contentRegion = screen.getByText("コンテンツ");
-    expect(contentRegion).toHaveClass("flex-1", "overflow-y-auto");
+    expect(screen.getByRole("main")).toBeInTheDocument();
   });
 });

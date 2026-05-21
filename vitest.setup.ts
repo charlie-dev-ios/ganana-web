@@ -9,3 +9,18 @@ if (!globalThis.ResizeObserver) {
     disconnect() {}
   };
 }
+
+// shadcn sidebar の useIsMobile は window.matchMedia を利用するが、
+// jsdom には実装されていないため最小限のスタブを用意する。
+if (!window.matchMedia) {
+  window.matchMedia = (query: string): MediaQueryList => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  });
+}
